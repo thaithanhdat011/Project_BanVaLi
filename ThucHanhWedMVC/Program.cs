@@ -9,7 +9,9 @@ builder.Services.AddControllersWithViews();
 
 var connectionSrting = builder.Configuration.GetConnectionString("QlbanVaLiContext");
 builder.Services.AddDbContext<QlbanVaLiContext>(x => x.UseSqlServer(connectionSrting));
+
 builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepository>();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -27,16 +29,17 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
-});
+//app.UseEndpoints(endpoints =>
+//{
+//   endpoints.MapControllerRoute(
+//     name: "areas",
+//     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+//    );
+//});

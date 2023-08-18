@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using ThucHanhWedMVC.Models;
+using ThucHanhWedMVC.Models.Authentication;
 using ThucHanhWedMVC.ViewModels;
 using X.PagedList;
 
@@ -16,7 +17,7 @@ namespace ThucHanhWedMVC.Controllers
         {
             _logger = logger;
         }
-
+        //[Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 8;
@@ -26,7 +27,7 @@ namespace ThucHanhWedMVC.Controllers
 
             return View(lst);
         }
-
+        //[Authentication]
         public IActionResult SanPhamTheoLoai(String maloai, int? page)
         {
             int pageSize = 8;
